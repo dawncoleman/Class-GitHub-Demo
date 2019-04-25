@@ -9,6 +9,8 @@ library(tidyverse)
 
 hsb2 <- read_csv("hsb2.csv")
 
+hsb2$ses <- factor(hsb2$ses)
+
 ```
 
 ## Relationship between SES and Math Scores
@@ -22,5 +24,16 @@ scores.  Blah blah blah.
 hsb2 %>%
     group_by(ses) %>%
     summarize(mean(math), median(math), sd(math), min(math), max(math))
+
+```
+
+Now let's do a plot.
+
+```{r}
+
+hsb2 %>%
+    group_by(ses) %>%
+    ggplot(aes(x = ses, y = math)) +
+    geom_boxplot()
 
 ```
